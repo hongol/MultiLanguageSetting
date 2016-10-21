@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<PreferenceCategory-->
+        <!--android:title="@string/preferencetitle"-->
+        <!--android:key="language_settings">-->
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/preferencetitle" >
+
+        <!--<com.example.penghong.multilanguagetestflight1.PreferenceTheme-->
+        <ListPreference
+            android:key="language"
+            android:title="@string/preferencetitle"
+            android:summary="@string/preferencesummary"
+            android:defaultValue="English "
+            android:entries="@array/Languages"
+            android:entryValues="@array/LanguagesValues"/>
+        <!--android:enabled="true"-->
+        <!--android:selectable="true"-->
+
+    </android.support.v7.preference.PreferenceCategory>
+    <!--</PreferenceCategory>-->
+
+</PreferenceScreen>
