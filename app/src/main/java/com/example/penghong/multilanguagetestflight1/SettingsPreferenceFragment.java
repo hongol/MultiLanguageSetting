@@ -1,6 +1,5 @@
 package com.example.penghong.multilanguagetestflight1;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -9,14 +8,8 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceCategory;
-import android.support.v7.preference.PreferenceScreen;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+import android.util.Log;
 //import android.support.v7.preference.PreferenceFragmentCompat;
-import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompatDividers;
 
 import java.util.Locale;
@@ -45,46 +38,77 @@ public class SettingsPreferenceFragment extends PreferenceFragmentCompatDividers
 //        }
 //    }
 
+
     private void changeLanguage() {
-        final Context context = getPreferenceManager().getContext();
-        final PreferenceScreen screen = (PreferenceScreen) findPreference("language_setting");
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Preference prefEn = findPreference("language_en");
-        Preference prefZhrCn = findPreference("language_zh_rCN");
-        Preference prefZhrTw = findPreference("language_zh_rTW");
+        final CustomLanguagePreference prefEn   = (CustomLanguagePreference) findPreference("language_en");
+        final Preference prefZhrCn              = findPreference("language_zh_rCN");
+        final Preference prefZhrTw              = findPreference("language_zh_rTW");
 
         if (prefEn != null) {
+
+            if (prefEn instanceof CustomLanguagePreference) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getPreferenceManager().getContext());
+                String lang = sharedPreferences.getString("language", "en");
+                boolean radioButtonCheck = sharedPreferences.getBoolean("radioButtonCheck", true);
+
+                if (lang.contentEquals("en") && radioButtonCheck == true) {
+                    prefEn.setWidgetLayoutResource(R.layout.item_radiobuttontrue);
+                } else {
+                    prefEn.setWidgetLayoutResource(R.layout.item_radiobuttonfalse);
+                }
+            }
+
             prefEn.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     setLocale(Locale.ENGLISH, "en");
                     createNewLanguagePreference();
-
-//                    Toast.makeText(context, "English", Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });
         }
         if (prefZhrCn != null) {
+            if (prefZhrCn instanceof CustomLanguagePreference) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getPreferenceManager().getContext());
+                String lang = sharedPreferences.getString("language", "en");
+                boolean radioButtonCheck = sharedPreferences.getBoolean("radioButtonCheck", true);
+
+                if (lang.contentEquals("zh-rCN") && radioButtonCheck == true) {
+                    prefZhrCn.setWidgetLayoutResource(R.layout.item_radiobuttontrue);
+                } else {
+                    prefZhrCn.setWidgetLayoutResource(R.layout.item_radiobuttonfalse);
+                }
+            }
+
             prefZhrCn.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     setLocale(Locale.SIMPLIFIED_CHINESE, "zh-rCN");
                     createNewLanguagePreference();
 
-//                    Toast.makeText(context, "简体", Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });
         }
         if (prefZhrTw != null) {
+            if (prefZhrTw instanceof CustomLanguagePreference) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getPreferenceManager().getContext());
+                String lang = sharedPreferences.getString("language", "en");
+                boolean radioButtonCheck = sharedPreferences.getBoolean("radioButtonCheck", true);
+
+                if (lang.contentEquals("zh-rTW") && radioButtonCheck == true) {
+                    prefZhrTw.setWidgetLayoutResource(R.layout.item_radiobuttontrue);
+                } else {
+                    prefZhrTw.setWidgetLayoutResource(R.layout.item_radiobuttonfalse);
+                }
+            }
+
             prefZhrTw.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     setLocale(Locale.TRADITIONAL_CHINESE, "zh-rTW");
                     createNewLanguagePreference();
 
-//                    Toast.makeText(context, "繁體", Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });
@@ -116,6 +140,13 @@ public class SettingsPreferenceFragment extends PreferenceFragmentCompatDividers
 //        ft.addToBackStack(newFragment.getClass().getName());
 //        getFragmentManager().popBackStack();
         ft.commit();
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getPreferenceManager().getContext());
+//        boolean radioButtonCheck = sharedPreferences.getBoolean("radioButtonCheck", false);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("radioButtonCheck", true);
+        editor.commit();
     }
 
 //    private void removePreviousLanguagePreference() {

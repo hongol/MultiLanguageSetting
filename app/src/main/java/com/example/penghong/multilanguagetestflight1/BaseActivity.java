@@ -31,12 +31,8 @@ public class BaseActivity extends AppCompatActivity implements PreferenceFragmen
         Locale locale = getLocale(this);
         if (!locale.equals(mLocale)) {
             mLocale = locale;
-            Log.d("BaseActivity", locale.getDisplayLanguage().toString());
-//            setLocale();
-//            recreate();
         } else {
             mLocale = getResources().getConfiguration().locale;
-            Log.d("BaseActivity1", locale.getDisplayLanguage().toString());
         }
     }
 
@@ -48,11 +44,8 @@ public class BaseActivity extends AppCompatActivity implements PreferenceFragmen
         Locale locale = getLocale(this);
         if (!locale.equals(mLocale)) {
             mLocale = locale;
-//            setLocale();
-////            recreate();
         } else {
             mLocale = getResources().getConfiguration().locale;
-//        Log.d("BaseActivity", mLocale.getDisplayLanguage().toString());
         }
     }
 
@@ -63,7 +56,6 @@ public class BaseActivity extends AppCompatActivity implements PreferenceFragmen
         Log.d("BaseActivity", getClass().toString() + " onPause");
         Locale locale = getLocale(this);
         if (!locale.equals(mLocale)) {
-            Log.d("BaseActivity", getClass().toString() + " onPause1");
             mLocale = locale;
             setLocale();
             recreate();

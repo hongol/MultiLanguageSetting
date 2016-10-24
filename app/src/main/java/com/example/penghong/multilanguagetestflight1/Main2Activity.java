@@ -24,7 +24,6 @@ public class Main2Activity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {
-            Toast.makeText(this, "EnterHere", Toast.LENGTH_SHORT).show();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             Fragment newFragment = new SettingsPreferenceFragment();
             ft.replace(R.id.fragment, newFragment, "settingsPreferenceFragment");

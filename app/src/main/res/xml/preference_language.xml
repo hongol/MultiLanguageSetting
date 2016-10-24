@@ -13,15 +13,15 @@
             android:summary="@string/preferencesummary"
             android:persistent="false">
 
-            <Preference
+            <com.example.penghong.multilanguagetestflight1.CustomLanguagePreference
                 android:key="language_en"
                 android:title="English"
                 android:persistent="false"/>
-            <Preference
+            <com.example.penghong.multilanguagetestflight1.CustomLanguagePreference
                 android:key="language_zh_rCN"
                 android:title="中文（简体）"
                 android:persistent="false"/>
-            <Preference
+            <com.example.penghong.multilanguagetestflight1.CustomLanguagePreference
                 android:key="language_zh_rTW"
                 android:title="中文（繁體）"
                 android:persistent="false"/>

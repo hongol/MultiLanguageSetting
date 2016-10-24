@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity  {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /** Read from app base locale and determine the starting language */
         Locale locale = getLocale(this);
         if (!locale.equals(getResources().getConfiguration().locale)) {
             setLocale();
